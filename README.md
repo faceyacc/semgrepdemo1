@@ -24,3 +24,4 @@ severity:error rule:useless-eqeq: This expression is always True: `x == x` or `x
 24:print(x != x)
 ran 1 rules on 1 files: 2 findings
 ```
+Rule used in this demo is open to the public and can be found in the Semgrep [Rule Registry](https://semgrep.dev/r)
