@@ -1,4 +1,15 @@
 rules:
+  - id: hardcoded-token
+    pattern-either:
+      - pattern: $W(..., aws_secret_access_key="=~/^[A-Za-z0-9/+=]+$/", ...)
+      - pattern: $W(..., aws_access_key_id="=~/^AKI/", ...)
+      - pattern: $W(..., aws_session_token="...", ...)
+    message: ardcoded AWS access token detected. Use environment variables to
+      access tokens (e.g., os.environ.get(...)) or use non version-controlled
+      configuration files.
+    languages: [python]
+    severity: WARNING
+ 
   - id: useless-eqeq
     patterns:
       - pattern-not-inside: |
@@ -26,3 +37,4 @@ rules:
       technology:
         - python
       license: Commons Clause License Condition v1.0[LGPL-2.1-only]
+ 
