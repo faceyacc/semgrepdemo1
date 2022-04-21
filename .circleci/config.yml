@@ -15,6 +15,7 @@ jobs:
 
       # Change job timeout (default is 1800 seconds; set to 0 to disable)
       # SEMGREP_TIMEOUT: 300
+export SEMGREP_PR_ID="${CIRCLE_PULL_REQUEST##*/}"
 
     docker:
       - image: returntocorp/semgrep
@@ -24,7 +25,7 @@ jobs:
           name: "Set environment variables" # for PR comments and  in-app hyperlinks to findings
           command: |
               echo 'export SEMGREP_COMMIT=$CIRCLE_SHA1' >> $BASH_ENV
-              echo 'export SEMGREP_PR_ID=${CIRCLE_PULL_REQUEST##*/}' >> $BASH_ENV
+              export SEMGREP_PR_ID="${CIRCLE_PULL_REQUEST##*/}" >> $BASH_ENV
               echo 'export SEMGREP_JOB_URL=$CIRCLE_BUILD_URL' >> $BASH_ENV
               echo 'export SEMGREP_REPO_NAME=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV
       - run:
