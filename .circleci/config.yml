@@ -10,7 +10,6 @@ jobs:
     environment:
 
       # Scan changed files in PRs, block on new issues only (existing issues ignored)
-      SEMGREP_APP_TOKEN: {SEMGREP_APP_TOKEN}
       SEMGREP_BASELINE_REF: << parameters.diff_branch >>
       SEMGREP_REPO_URL: << pipeline.project.git_url >>
       SEMGREP_BRANCH: << pipeline.git.branch >>
